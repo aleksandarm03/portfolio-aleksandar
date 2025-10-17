@@ -1,8 +1,21 @@
 'use strict';
 
 //Toggle Function
-
 const elemToggleFunc = function(elem) { elem.classList.toggle('active'); }
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
 
 // Header Sticky & Go-Top
 
@@ -68,3 +81,102 @@ if(localStorage.getItem('theme') === 'light-theme'){
     document.body.classList.remove('light-theme');
     document.body.classList.add('dark-theme');
 }
+
+// i18n translations loaded from JSON files
+const translationsCache = {};
+
+async function loadTranslations(lang) {
+    if (translationsCache[lang]) return translationsCache[lang];
+    try {
+        const res = await fetch(`./locales/${lang}.json`, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`Failed to load ${lang}`);
+        const json = await res.json();
+        translationsCache[lang] = json;
+        return json;
+    } catch (err) {
+        if (lang !== 'en') {
+            return loadTranslations('en');
+        }
+        return {};
+    }
+}
+
+function applyTranslations(dict, lang) {
+    document.documentElement.setAttribute('lang', lang);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+            el.textContent = dict[key];
+        }
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (dict[key]) {
+            el.setAttribute('placeholder', dict[key]);
+        }
+    });
+}
+
+const languageSelector = document.getElementById('lang');
+
+async function setLanguage(lang) {
+    const dict = await loadTranslations(lang);
+    localStorage.setItem('language', lang);
+    applyTranslations(dict, lang);
+}
+
+languageSelector.addEventListener('change', function() {
+    const selectedLang = this.value;
+    setLanguage(selectedLang);
+});
+
+const savedLanguage = localStorage.getItem('language') || 'en';
+languageSelector.value = savedLanguage;
+setLanguage(savedLanguage);
+
+// Form validation and enhanced UX
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        if (!name || !email || !message) {
+            e.preventDefault();
+            alert('Please fill in all required fields.');
+            return;
+        }
+        
+        // Basic email validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            e.preventDefault();
+            alert('Please enter a valid email address.');
+            return;
+        }
+    });
+}
+
+// Add loading animation for project cards
+const projectCards = document.querySelectorAll('.project-card');
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+projectCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(card);
+});

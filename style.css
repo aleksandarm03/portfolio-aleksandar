@@ -1212,3 +1212,67 @@ textarea.input-field {
         max-width: 450px;
     }
 }
+
+/* Additional improvements */
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-text {
+    color: var(--color-secondary);
+    font-size: var(--fs-6);
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+/* Smooth scrolling fallback */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading animation for skills cards */
+.skills-card, .tools-list .skills-card {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.skills-card:hover {
+    transform: scale(1.1);
+}
+
+/* Enhanced form styling */
+.contact-form .input-field:focus {
+    outline: 2px solid var(--raw-seinna);
+    outline-offset: 2px;
+}
+
+.contact-form .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Accessibility improvements */
+.hidden {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Responsive improvements for project grid */
+@media (min-width: 768px) {
+    .project-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .project-list li:first-child {
+        grid-column: 1 / -1;
+    }
+}

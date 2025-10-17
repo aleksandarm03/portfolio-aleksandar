@@ -4,7 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aleksandar - Portfolio</title>
+    <meta name="description" content="Aleksandar Mladenović - Student Developer Portfolio. Web development, programming skills in JavaScript, React, Python, C++, and more.">
+    <meta name="keywords" content="web developer, portfolio, JavaScript, React, Python, C++, student developer, Aleksandar Mladenović">
+    <meta name="author" content="Aleksandar Mladenović">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Aleksandar Mladenović - Portfolio">
+    <meta property="og:description" content="Student Developer passionate about building clean and functional web applications">
+    <meta property="og:image" content="./images/hero.png">
+    <meta property="og:url" content="https://aleksandarm03.github.io">
+    <meta property="og:type" content="website">
+    
+    <title>Aleksandar Mladenović - Portfolio | Student Developer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./images/favicon_io/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
@@ -17,13 +28,11 @@
                 <a href="#">Aleksandar<span>.</span></a>
             </h1>
 
-            <div class="navbar-actions">
+                <div class="navbar-actions">
                 <select name="language" id="lang">
                     <option value="en">En</option>
-                    <option value="es">Sr</option>
-                </select>
-
-                <button class="theme-btn" aria-label="Change Theme" title="Change Theme" data-theme-btn><span
+                    <option value="sr">Sr</option>
+                </select>                <button class="theme-btn" aria-label="Change Theme" title="Change Theme" data-theme-btn><span
                         class="icon"></span></button>
             </div>
 
@@ -35,11 +44,11 @@
 
             <nav class="navbar" data-navbar>
                 <ul class="navbar-list">
-                    <li><a href="#home" class="navbar-link">Home</a></li>
-                    <li><a href="#about" class="navbar-link">About</a></li>
-                    <li><a href="#skills" class="navbar-link">Skills</a></li>
-                    <li><a href="#portfolio" class="navbar-link">Portfolio</a></li>
-                    <li><a href="#contact" class="navbar-link">Contact</a></li>
+                    <li><a href="#home" class="navbar-link" data-i18n="nav.home">Home</a></li>
+                    <li><a href="#about" class="navbar-link" data-i18n="nav.about">About</a></li>
+                    <li><a href="#skills" class="navbar-link" data-i18n="nav.skills">Skills</a></li>
+                    <li><a href="#portfolio" class="navbar-link" data-i18n="nav.portfolio">Portfolio</a></li>
+                    <li><a href="#contact" class="navbar-link" data-i18n="nav.contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -52,40 +61,40 @@
                     <picture>
                         <source srcset="images/hero.png" media="(min-width: 768px)">
                         <source srcset="images/hero.png" media="(min-width: 500px)">
-                        <img src="images/hero.png" alt="Opis tvoje slike" class="w-100">
+                        <img src="images/hero.png" alt="Aleksandar Mladenović - Student Developer" class="w-100">
                     </picture>
                 </figure>
 
 
                 <div class="hero-content">
-                    <h2 class="h2 hero-title">Designing & Building Creative Products</h2>
-                    <a href="#contact" class="btn btn-primary">Contact us</a>
+                    <h2 class="h2 hero-title" data-i18n="hero.title">Designing & Building Creative Products</h2>
+                    <a href="#contact" class="btn btn-primary" data-i18n="hero.cta">Contact us</a>
                 </div>
 
                 <ul class="hero-social-list">
                     <li>
                         <a href="https://www.instagram.com/aleksandarm03/" class="hero-social-link">
                             <i class="ri-instagram-fill"></i>
-                            <div class="tooltip">Instagram</div>
+                            <div class="tooltip" data-i18n="social.instagram">Instagram</div>
                         </a>
                     </li>
 
                     <li>
                         <a href="https://www.github.com/aleksandarm03/" class="hero-social-link">
                             <i class="ri-github-line"></i>
-                            <div class="tooltip">Github</div>
+                            <div class="tooltip" data-i18n="social.github">Github</div>
                         </a>
                     </li>
 
                     <li>
                         <a href="https://www.linkedin.com/in/aleksandarm03/" class="hero-social-link">
                             <i class="ri-linkedin-fill"></i>
-                            <div class="tooltip">Linkedin</div>
+                            <div class="tooltip" data-i18n="social.linkedin">Linkedin</div>
                         </a>
                     </li>
                 </ul>
 
-                <a href="#stats" class="scroll-down">Scroll</a>
+                <a href="#stats" class="scroll-down" data-i18n="hero.scroll">Scroll</a>
             </section>
 
             <section class="stats" id="stats">
@@ -96,7 +105,7 @@
                         <div class="card-icon">
                             <img src="https://i.postimg.cc/x1TWtf69/stats-card-icon-1.png" alt="badge icon">
                         </div>
-                        <h2 class="h2 card-title">1000+<strong>Lines of Code Written</strong></h2>
+                        <h2 class="h2 card-title">1000+<strong data-i18n="stats.line1">Lines of Code Written</strong></h2>
                         <ion-icon name="chevron-forward-outline"></ion-icon>
 
                     </li>
@@ -106,7 +115,7 @@
                         <div class="card-icon">
                             <img src="https://i.postimg.cc/q7ByNYBb/stats-card-icon-2.png" alt="checkmark icon">
                         </div>
-                        <h2 class="h2 card-title">Always<strong>Learning & Improving</strong></h2>
+                        <h2 class="h2 card-title"><strong data-i18n="stats.line2">Learning & Improving</strong></h2>
                         <ion-icon name="chevron-forward-outline"></ion-icon>
 
                     </li>
@@ -116,7 +125,7 @@
                         <div class="card-icon">
                             <img src="https://i.postimg.cc/hj6d3tL6/stats-card-icon-3.png" alt="peoples rating icon">
                         </div>
-                        <h2 class="h2 card-title">∞<strong>Ideas & Motivation</strong></h2>
+                        <h2 class="h2 card-title">∞<strong data-i18n="stats.line3">Ideas & Motivation</strong></h2>
                         <ion-icon name="chevron-forward-outline"></ion-icon>
 
                     </li>
@@ -131,9 +140,9 @@
                 </figure>
 
                 <div class="about-content section-content">
-                    <p class="section-subtitle">About me</p>
-                    <h2 class="h2 section-title">Need a Product? Get in Touch!</h2>
-                    <p class="section-text">Hi, I'm Aleksandar Mladenović. I'm a student developer passionate about
+                    <p class="section-subtitle" data-i18n="about.subtitle">About me</p>
+                    <h2 class="h2 section-title" data-i18n="about.title">Need a Product? Get in Touch!</h2>
+                    <p class="section-text" data-i18n="about.text">Hi, I'm Aleksandar Mladenović. I'm a student developer passionate about
                         building clean and functional web applications. I enjoy turning ideas into interactive user
                         experiences through modern tools and creative thinking. I'm always eager to learn new
                         technologies, explore better ways to write code, and deepen my understanding of software
@@ -146,21 +155,21 @@
                 </div>
 
                 <div class="btn-group">
-                    <a href="#contact" class="btn btn-secondary">Hire me</a>
-                    <a href="./images/CV-Aleksandar.pdf" target="_blank" class="btn btn-primary">Download CV</a>
+                    <a href="#contact" class="btn btn-secondary" data-i18n="about.hire"> </a>
+                    <a href="./images/CV-Aleksandar.pdf" target="_blank" class="btn btn-primary" data-i18n="about.cv"> </a>
                 </div>
             </section>
 
             <section class="skills" id="skills">
                 <div class="skills-content section-content">
                     <p class="section-subtitle">My Skills</p>
-                    <h2 class="h2 section-title">What my Programming Skills Includes?</h2>
-                    <p class="section-text">I develop simple, intuitive and responsive user interface that helps user
+                    <h2 class="h2 section-title" data-i18n="skills.title">What my Programming Skills Includes?</h2>
+                    <p class="section-text" data-i18n="skills.text">I develop simple, intuitive and responsive user interface that helps user
                         get things done with less effort and time with those technologies</p>
 
                     <div class="skills-toggle" data-toggle-box>
-                        <button class="toggle-btn active" data-toggle-btn>Skills</button>
-                        <button class="toggle-btn" data-toggle-btn>Tools</button>
+                        <button class="toggle-btn active" data-toggle-btn data-i18n="skills.tabSkills"></button>
+                        <button class="toggle-btn" data-toggle-btn data-i18n="skills.tabTools"></button>
                     </div>
                 </div>
 
@@ -345,9 +354,9 @@
                 <ul class="project-list">
                     <li>
                         <div class="project-content section-content">
-                            <p class="section-subtitle">My Works</p>
-                            <h2 class="h3 section-title">See my works which will amaze you!</h2>
-                            <p class="section-text">We develop the best quality website that serves you in the
+                            <p class="section-subtitle" data-i18n="projects.subtitle">My Works</p>
+                            <h2 class="h3 section-title" data-i18n="projects.title">See my works which will amaze you!</h2>
+                            <p class="section-text" data-i18n="projects.text">We develop the best quality website that serves you in the
                                 long-term. Well-documented, clean, easy and elegant interface helps any non-technical
                                 clients. You can find all my project code on my <a class="h4 card-title"
                                     href="https://www.github.com/aleksandarm03">GitHub profile</a></p>
@@ -413,27 +422,68 @@
 
 
                     <!-- SoundVibe -->
-
                     <li>
                         <a href="https://aleksandarm03.github.io/earbuds-landing-page/" target="_blank" class="project-card">
                             <figure class="card-banner">
-                                <img src="./images/projects/soundvibe.png" alt="SoundVibe"
+                                <img src="./images/projects/soundvibe.png" alt="SoundVibe - Earbuds Landing Page"
                                     style="max-width: 100%; height: auto;">
-
                             </figure>
 
                             <div class="card-content">
                                 <h3 class="h4 card-title">SoundVibe</h3>
-
-
+                                <p class="card-text">Modern earbuds landing page with responsive design</p>
                                 <time class="publish-date" datetime="2025-04">April 2025</time>
-
                             </div>
                         </a>
                     </li>
 
-                    
+                    <!-- A* Pathfinding Visualizer -->
+                    <li>
+                        <a href="#" target="_blank" class="project-card">
+                            <figure class="card-banner">
+                                <img src="./images/a-star-visualizer.gif" alt="A* Pathfinding Visualizer"
+                                    style="max-width: 100%; height: auto;">
+                            </figure>
 
+                            <div class="card-content">
+                                <h3 class="h4 card-title">A* Pathfinding Visualizer</h3>
+                                <p class="card-text">Interactive visualization of A* pathfinding algorithm</p>
+                                <time class="publish-date" datetime="2024-12">December 2024</time>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- Weather App -->
+                    <li>
+                        <a href="#" target="_blank" class="project-card">
+                            <figure class="card-banner">
+                                <img src="./images/WeatherApp.png" alt="Weather Application"
+                                    style="max-width: 100%; height: auto;">
+                            </figure>
+
+                            <div class="card-content">
+                                <h3 class="h4 card-title">Weather App</h3>
+                                <p class="card-text">Real-time weather application with location services</p>
+                                <time class="publish-date" datetime="2024-11">November 2024</time>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- 5G Technology Project -->
+                    <li>
+                        <a href="#" target="_blank" class="project-card">
+                            <figure class="card-banner">
+                                <img src="./images/huawei.png" alt="5G Technology Research"
+                                    style="max-width: 100%; height: auto;">
+                            </figure>
+
+                            <div class="card-content">
+                                <h3 class="h4 card-title">5G Technology Research</h3>
+                                <p class="card-text">Comprehensive research on 5G technology and its applications</p>
+                                <time class="publish-date" datetime="2024-10">October 2024</time>
+                            </div>
+                        </a>
+                    </li>
                 </ul>
 
 
@@ -441,9 +491,9 @@
 
             <section class="contact" id="contact">
                 <div class="contact-content section-content">
-                    <p class="section-subtitle">Contact</p>
-                    <h2 class="h3 section-title">Have you any project? Drop a message!</h2>
-                    <p class="section-text">Get in touch and let me know if I can help! Fill out the form and I'll be in
+                    <p class="section-subtitle" data-i18n="contact.subtitle">Contact</p>
+                    <h2 class="h3 section-title" data-i18n="contact.title">Have you any project? Drop a message!</h2>
+                    <p class="section-text" data-i18n="contact.text">Get in touch and let me know if I can help! Fill out the form and I'll be in
                         touch as soon as possible</p>
 
                     <ul class="contact-list">
@@ -453,7 +503,7 @@
                             </div>
 
                             <div class="wrapper">
-                                <h3 class="h4 contact-item-title">Address: </h3>
+                                <h3 class="h4 contact-item-title" data-i18n="contact.address">Address: </h3>
                                 <address class="contact-info">
                                     34000 Kragujevac, Srbija
                                 </address>
@@ -466,7 +516,7 @@
                             </div>
 
                             <div class="wrapper">
-                                <h3 class="h4 contact-item-title">Phone: </h3>
+                                <h3 class="h4 contact-item-title" data-i18n="contact.phone">Phone: </h3>
 
                                 <a href="tel:+381668098501" class="contact-info">(+381) 66 809 8501</a>
 
@@ -480,7 +530,7 @@
                             </div>
 
                             <div class="wrapper">
-                                <h3 class="h4 contact-item-title">Email: </h3>
+                                <h3 class="h4 contact-item-title" data-i18n="contact.email">Email: </h3>
 
                                 <a href="mailto:accam003@gmail.com" class="contact-info">accam003@gmail.com</a>
                             </div>
@@ -491,7 +541,7 @@
                             <ul class="contact-social-list">
                                 <li>
                                     <a href="https://www.instagram.com/aleksandarm03/" class="contact-social-link">
-                                        <div class="tooltip">Instagram</div>
+                                        <div class="tooltip" data-i18n="social.instagram">Instagram</div>
                                         <i class="ri-instagram-fill"></i>
                                     </a>
                                 </li>
@@ -500,14 +550,14 @@
 
                                 <li>
                                     <a href="https://www.linkedin.com/in/aleksandarm03/" class="contact-social-link">
-                                        <div class="tooltip">Linkedin</div>
+                                        <div class="tooltip" data-i18n="social.linkedin">Linkedin</div>
                                         <i class="ri-linkedin-fill"></i>
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="https://www.github.com/aleksandarm03/" class="contact-social-link">
-                                        <div class="tooltip">Github</div>
+                                        <div class="tooltip" data-i18n="social.github">Github</div>
                                         <i class="ri-github-fill"></i>
                                     </a>
                                 </li>
@@ -516,48 +566,48 @@
                     </ul>
                 </div>
 
-                <form name="contact" method="POST" netlify class="contact-form">
+                <form name="contact" method="POST" netlify class="contact-form" novalidate>
                     <p class="hidden">
-                        <label>Ne popunjavajte ovo polje ako ste ljudsko biće: <input name="bot-field"></label>
+                        <label>Ne popunjavajte ovo polje ako ste ljudsko biće: <input name="bot-field" tabindex="-1"></label>
                     </p>
                     <input type="hidden" name="form-name" value="contact">
 
                     <div class="form-wrapper">
-                        <label for="name" class="form-label">Name</label>
+                        <label for="name" class="form-label" data-i18n="form.name">Name</label>
                         <div class="input-wrapper">
-                            <input type="text" name="name" id="name" required placeholder="Petar Petrović"
+                            <input type="text" name="name" id="name" required placeholder="Petar Petrović" data-i18n-placeholder="form.namePlaceholder"
                                 class="input-field">
                             <ion-icon name="person-outline"></ion-icon>
                         </div>
                     </div>
 
                     <div class="form-wrapper">
-                        <label for="email" class="form-label">Email</label>
+                        <label for="email" class="form-label" data-i18n="form.email">Email</label>
                         <div class="input-wrapper">
-                            <input type="email" name="email" id="email" required placeholder="petar@gmail.com"
+                            <input type="email" name="email" id="email" required placeholder="petar@gmail.com" data-i18n-placeholder="form.emailPlaceholder"
                                 class="input-field">
                             <ion-icon name="mail"></ion-icon>
                         </div>
                     </div>
 
                     <div class="form-wrapper">
-                        <label for="phone" class="form-label">Phone</label>
+                        <label for="phone" class="form-label" data-i18n="form.phone">Phone</label>
                         <div class="input-wrapper">
-                            <input type="tel" name="phone" id="phone" placeholder="Phone Number" class="input-field">
+                            <input type="tel" name="phone" id="phone" placeholder="Phone Number" data-i18n-placeholder="form.phonePlaceholder" class="input-field">
                             <ion-icon name="call"></ion-icon>
                         </div>
                     </div>
 
                     <div class="form-wrapper">
-                        <label for="message" class="form-label">Message</label>
+                        <label for="message" class="form-label" data-i18n="form.message">Message</label>
                         <div class="input-wrapper">
                             <textarea name="message" id="message" class="input-field" required
-                                placeholder="Write your Message"></textarea>
+                                placeholder="Write your Message" data-i18n-placeholder="form.messagePlaceholder"></textarea>
                             <ion-icon name="chatbubbles"></ion-icon>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="submit" class="btn btn-primary" data-i18n="form.send">Send</button>
                 </form>
             </section>
         </article>
