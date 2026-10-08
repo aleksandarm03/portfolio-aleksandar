@@ -1,45 +1,246 @@
 {
-  "nav.home": "Home",
-  "nav.about": "About",
-  "nav.skills": "Skills",
-  "nav.portfolio": "Portfolio",
-  "nav.contact": "Contact",
-  "hero.title": "Designing & Building Creative Products",
-  "hero.cta": "Contact us",
-  "hero.scroll": "Scroll",
-  "social.instagram": "Instagram",
-  "social.github": "Github",
-  "social.linkedin": "Linkedin",
-  "about.subtitle": "About me",
-  "about.title": "Need a Product? Get in Touch!",
-  "about.text": "Hello, I'm Aleksandar Mladenović. I'm a student developer and I love to create beautiful and functional web applications. I enjoy turning ideas into interactive user experiences through modern tools and creative thinking. I'm always motivated to learn new technologies, explore better ways to write code and deepen my understanding of software development. Besides working on personal and academic projects, I continuously improve my skills by experimenting with APIs, frontend frameworks and real-world scenarios. I believe that consistent learning and curiosity are the keys to becoming a great developer and I'm always open to new opportunities to collaborate and grow.",
-  "stats.line1": "Lines of Code Written",
-  "stats.line2": "Learning & Improving",
-  "stats.line3": "Ideas & Motivation",
-  "about.hire": "Hire me",
-  "about.cv": "Download CV",
-  "skills.subtitle": "My Skills",
-  "skills.title": "What my Programming Skills Includes?",
-  "skills.text": "I develop simple, intuitive and responsive user interface that helps user get things done with less effort and time with those technologies",
-  "skills.tabSkills": "Skills",
-  "skills.tabTools": "Tools",
-  "projects.subtitle": "My Works",
-  "projects.title": "See my works",
-  "projects.text": "I develop websites that make a good impression. A well-documented, clean, simple and elegant interface helps even non-technical customers. You can find all my project code on my GitHub profile",
-  "contact.subtitle": "Contact",
-  "contact.title": "Have you any project? Drop a message!",
-  "contact.text": "Get in touch and let me know if I can help! Fill out the form and I'll be in touch as soon as possible",
-  "contact.address": "Address: ",
-  "contact.phone": "Phone: ",
-  "contact.email": "Email: ",
-  "form.name": "Name",
-  "form.email": "Email",
-  "form.phone": "Phone",
-  "form.message": "Message",
-  "form.send": "Send",
-  "form.namePlaceholder": "Petar Petrović",
-  "form.emailPlaceholder": "petar@gmail.com",
-  "form.phonePlaceholder": "Phone Number",
-  "form.messagePlaceholder": "Write your Message"
+  "meta": {
+    "title": "Aleksandar Mladenović | Technical Product Specialist",
+    "description": "Aleksandar Mladenović is a Technical Product Specialist at Inovatec Systems in Kragujevac. Portfolio covering full-stack work, studies at PMF, and selected projects."
+  },
+  "a11y": {
+    "skip": "Skip to content",
+    "nav": "Primary",
+    "language": "Language",
+    "theme": "Change theme",
+    "menu": "Toggle menu",
+    "top": "Back to top",
+    "external": "Opens in a new tab"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "hero": {
+    "kicker": "Technical Product Specialist",
+    "title": "Aleksandar Mladenović",
+    "lead": "Inovatec Systems · Kragujevac",
+    "cta": "Get in touch",
+    "scroll": "Scroll",
+    "imageAlt": "Illustrated portrait of Aleksandar Mladenović with a laptop"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "highlights": [
+    {
+      "icon": "i-work",
+      "value": "Now",
+      "label": "Technical Product Specialist, Inovatec Systems"
+    },
+    {
+      "icon": "i-study",
+      "value": "MSc",
+      "label": "Information Technology, in progress"
+    },
+    {
+      "icon": "i-pin",
+      "value": "KG",
+      "label": "Kragujevac, Serbia"
+    }
+  ],
+  "about": {
+    "subtitle": "About me",
+    "title": "Software engineering, from school projects to a product team",
+    "text": "I am a fourth-year Software Engineering student at the Faculty of Natural Sciences and Mathematics in Kragujevac, specializing in software development. My journey in programming began during high school, where I developed a strong foundation in languages like Python, Java, C++, and web technologies such as HTML, CSS, and JavaScript. Over time, I have nurtured a passion for building efficient, scalable, and user-friendly solutions.\n\nI am particularly interested in full-stack development and software engineering, with a growing curiosity about cybersecurity and innovative IT solutions. My projects often reflect a commitment to problem-solving, teamwork, and continuous learning.\n\nBeyond coding, I enjoy table tennis and exploring new advancements in the tech industry. I am fluent in English and always open to collaborating on meaningful projects that challenge me to grow.",
+    "hire": "Hire me",
+    "cv": "Download CV"
+  },
+  "experience": {
+    "subtitle": "Experience",
+    "title": "Where I have worked",
+    "items": [
+      {
+        "role": "Technical Product Specialist",
+        "company": "Inovatec Systems",
+        "type": "Full-time",
+        "location": "Kragujevac, Serbia · On-site",
+        "start": "2026-09",
+        "end": "",
+        "startLabel": "Sep 2026",
+        "endLabel": "Present",
+        "summary": ""
+      },
+      {
+        "role": "Full Stack Engineer",
+        "company": "Inovatec Systems",
+        "type": "Internship",
+        "location": "Kragujevac, Serbia · On-site",
+        "start": "2026-07",
+        "end": "2026-08",
+        "startLabel": "Jul 2026",
+        "endLabel": "Aug 2026",
+        "summary": "During a summer internship at Inovatec Systems I worked on the team building the AI Assisted Candidate Intelligence Platform. I used Angular on the frontend and .NET 8 on the backend, with MS SQL Server for data, plus Azure and Docker, in an agile setup run through Jira."
+      },
+      {
+        "role": "Security Operations Center Analyst",
+        "company": "DCT - Data Cloud Technology",
+        "type": "Internship",
+        "location": "Kragujevac, Serbia · On-site",
+        "start": "2026-02",
+        "end": "2026-02",
+        "startLabel": "Feb 2026",
+        "endLabel": "Feb 2026",
+        "summary": "One-month internship covering security operations and cyber operations."
+      }
+    ]
+  },
+  "education": {
+    "subtitle": "Education",
+    "title": "Studies",
+    "items": [
+      {
+        "role": "Master's degree, Information Technology",
+        "company": "Institut za matematiku i informatiku, PMF Kragujevac",
+        "type": "",
+        "location": "Kragujevac, Serbia",
+        "start": "2026-10",
+        "end": "",
+        "startLabel": "Oct 2026",
+        "endLabel": "Present",
+        "summary": ""
+      },
+      {
+        "role": "Bachelor's degree, Computer Software Engineering",
+        "company": "Institut za matematiku i informatiku, PMF Kragujevac",
+        "type": "",
+        "location": "Kragujevac, Serbia",
+        "start": "2022-10",
+        "end": "2026-10",
+        "startLabel": "Oct 2022",
+        "endLabel": "Oct 2026",
+        "summary": ""
+      }
+    ]
+  },
+  "skills": {
+    "subtitle": "Skills",
+    "title": "Technologies I use",
+    "text": "Full-stack work, from the interface to the database and delivery. These are the tools confirmed by studies, the Inovatec internship, and my own projects.",
+    "items": [
+      { "name": "HTML", "icon": "images/skills icon/html5.png" },
+      { "name": "CSS", "icon": "images/skills icon/css3.png" },
+      { "name": "JavaScript", "icon": "images/skills icon/javascript.png" },
+      { "name": "TypeScript", "icon": "images/skills icon/typescript.png" },
+      { "name": "Angular" },
+      { "name": "React", "icon": "images/skills icon/react.png" },
+      { "name": "C#", "icon": "images/skills icon/c-sharp.png" },
+      { "name": ".NET" },
+      { "name": "Python", "icon": "images/skills icon/python.png" },
+      { "name": "Java" },
+      { "name": "C++", "icon": "images/skills icon/c-.png" },
+      { "name": "SQL" },
+      { "name": "Docker" },
+      { "name": "Azure" },
+      { "name": "Git", "icon": "images/skills icon/github.png" }
+    ]
+  },
+  "projects": {
+    "subtitle": "Selected work",
+    "title": "Things I have built",
+    "text": "A selection of personal and course projects. The code is on my",
+    "github": "GitHub profile",
+    "items": [
+      {
+        "title": "WitcherPedia",
+        "href": "https://aleksandarm03.github.io/WitcherPedia/",
+        "image": "images/projects/WitcherPedia.png",
+        "alt": "WitcherPedia screenshot",
+        "date": "2025-03",
+        "dateLabel": "March 2025",
+        "summary": "A Witcher reference site."
+      },
+      {
+        "title": "RetroBit",
+        "href": "https://retrobit.netlify.app/",
+        "image": "images/projects/retrobit.png",
+        "alt": "RetroBit screenshot",
+        "date": "2025-04",
+        "dateLabel": "April 2025",
+        "summary": "Retro computing project."
+      },
+      {
+        "title": "3D Globe",
+        "href": "https://aleksandarm03.github.io/3d-globe/",
+        "image": "images/projects/3D GLOBE.png",
+        "alt": "3D Globe screenshot",
+        "date": "2025-04",
+        "dateLabel": "April 2025",
+        "summary": "Interactive 3D globe."
+      },
+      {
+        "title": "SoundVibe",
+        "href": "https://aleksandarm03.github.io/earbuds-landing-page/",
+        "image": "images/projects/soundvibe.png",
+        "alt": "SoundVibe earbuds landing page",
+        "date": "2025-04",
+        "dateLabel": "April 2025",
+        "summary": "Landing page for earbuds."
+      },
+      {
+        "title": "A* Pathfinding Visualizer",
+        "href": "",
+        "image": "images/a-star-visualizer.gif",
+        "alt": "A star pathfinding visualizer",
+        "date": "2024-12",
+        "dateLabel": "December 2024",
+        "summary": "Interactive visualization of the A* algorithm."
+      },
+      {
+        "title": "Weather App",
+        "href": "",
+        "image": "images/WeatherApp.png",
+        "alt": "Weather application screenshot",
+        "date": "2024-11",
+        "dateLabel": "November 2024",
+        "summary": "Weather application with location."
+      },
+      {
+        "title": "5G Technology Research",
+        "href": "",
+        "image": "images/huawei.png",
+        "alt": "5G technology research cover",
+        "date": "2024-10",
+        "dateLabel": "October 2024",
+        "summary": "Research on 5G technology and its applications."
+      }
+    ]
+  },
+  "contact": {
+    "subtitle": "Contact",
+    "title": "Have a project? Send a message.",
+    "text": "Write if I can help. I read every message and reply as soon as I can.",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "send": "Send",
+    "namePlaceholder": "Petar Petrović",
+    "emailPlaceholder": "petar@gmail.com",
+    "phonePlaceholder": "Phone number",
+    "messagePlaceholder": "Write your message",
+    "subject": "Portfolio message",
+    "required": "Name, email, and message are required.",
+    "invalidEmail": "Enter a valid email address."
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  }
 }
-

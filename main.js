@@ -1,182 +1,410 @@
 'use strict';
 
-//Toggle Function
-const elemToggleFunc = function(elem) { elem.classList.toggle('active'); }
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Header Sticky & Go-Top
-
 const header = document.querySelector('[data-header]');
 const goTopBtn = document.querySelector('[data-go-top]');
-window.addEventListener('scroll', function(){ if(window.scrollY >= 10) { header.classList.add('active'); goTopBtn.classList.add('active'); }
-                                                                else { header.classList.remove('active'); goTopBtn.classList.remove('active'); } });
-
-// Mobile Menu
-
 const navToggleBtn = document.querySelector('[data-nav-toggle-btn]');
 const navbar = document.querySelector('[data-navbar]');
+const themeToggleBtn = document.querySelector('[data-theme-btn]');
+const languageSelector = document.getElementById('lang');
+const contactForm = document.getElementById('contact-form');
+const formError = document.querySelector('[data-form-error]');
 
-navToggleBtn.addEventListener('click', function() { 
-    elemToggleFunc(navToggleBtn);
-    elemToggleFunc(navbar);
-    elemToggleFunc(document.body);
-})
+const translationsCache = {};
+let currentDict = {};
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Skills Toggling Button
+function lookup(dict, path) {
+    return path.split('.').reduce((acc, key) => {
+        if (acc && Object.prototype.hasOwnProperty.call(acc, key)) {
+            return acc[key];
+        }
+        return undefined;
+    }, dict);
+}
 
-const toggleBtnBox = document.querySelector('[data-toggle-box]');
-const toggleBtns = document.querySelectorAll('[data-toggle-btn]');
-const skillsBox = document.querySelector('[data-skills-box]');
+function clearNode(node) {
+    while (node.firstChild) {
+        node.removeChild(node.firstChild);
+    }
+}
 
-for(let i = 0; i < toggleBtns.length; i++){
-    toggleBtns[i].addEventListener('click', function(){
-        elemToggleFunc(toggleBtnBox);
+function svgIcon(id) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'icon-svg');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('width', '28');
+    svg.setAttribute('height', '28');
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttribute('href', '#' + id);
+    svg.append(use);
+    return svg;
+}
 
-        for(let i = 0; i < toggleBtns.length; i++) { elemToggleFunc(toggleBtns[i]); }
-        elemToggleFunc(skillsBox);
+function appendPeriod(parent, item) {
+    const line = document.createElement('p');
+    line.className = 'timeline-time';
+    const start = document.createElement('time');
+    start.dateTime = item.start;
+    start.textContent = item.startLabel;
+    line.append(start);
+
+    const sameLabel = item.startLabel === item.endLabel;
+    if (!sameLabel) {
+        line.append(document.createTextNode(' – '));
+        if (item.end) {
+            const end = document.createElement('time');
+            end.dateTime = item.end;
+            end.textContent = item.endLabel;
+            line.append(end);
+        } else {
+            line.append(document.createTextNode(item.endLabel));
+        }
+    }
+
+    parent.append(line);
+}
+
+function renderTimeline(list, items) {
+    clearNode(list);
+    items.forEach((item) => {
+        const entry = document.createElement('li');
+        entry.className = 'timeline-item';
+
+        const role = document.createElement('h3');
+        role.className = 'h4 timeline-role';
+        role.textContent = item.role;
+        entry.append(role);
+
+        const meta = document.createElement('p');
+        meta.className = 'timeline-meta';
+        meta.textContent = item.type ? item.company + ' · ' + item.type : item.company;
+        entry.append(meta);
+
+        appendPeriod(entry, item);
+
+        if (item.location) {
+            const location = document.createElement('p');
+            location.className = 'timeline-location';
+            location.textContent = item.location;
+            entry.append(location);
+        }
+
+        if (item.summary) {
+            const summary = document.createElement('p');
+            summary.className = 'timeline-summary';
+            summary.textContent = item.summary;
+            entry.append(summary);
+        }
+
+        list.append(entry);
     });
 }
 
-// Dark & Light Theme Toggle
+function renderHighlights(list, items) {
+    clearNode(list);
+    items.forEach((item) => {
+        const card = document.createElement('li');
+        card.className = 'stats-card';
 
-const themeToggleBtn = document.querySelector('[data-theme-btn]');
+        const iconWrap = document.createElement('div');
+        iconWrap.className = 'card-icon';
+        iconWrap.setAttribute('aria-hidden', 'true');
+        iconWrap.append(svgIcon(item.icon));
+        card.append(iconWrap);
 
-themeToggleBtn.addEventListener('click', function(){
-    elemToggleFunc(themeToggleBtn);
+        const title = document.createElement('p');
+        title.className = 'h2 card-title';
+        const value = document.createElement('span');
+        value.className = 'stats-value';
+        value.textContent = item.value;
+        const label = document.createElement('strong');
+        label.textContent = item.label;
+        title.append(value, label);
+        card.append(title);
 
-    if(themeToggleBtn.classList.contains('active')){
-        document.body.classList.remove('dark-theme');
-        document.body.classList.add('light-theme');
-
-        localStorage.setItem('theme', 'light-theme');
-    }else{
-        document.body.classList.add('dark-theme');
-        document.body.classList.remove('light-theme');
-
-        localStorage.setItem('theme', 'dark-theme');
-    }
-})
-
-//Applying Theme kept in Local Storage 
-
-if(localStorage.getItem('theme') === 'light-theme'){
-    themeToggleBtn.classList.add('active');
-    document.body.classList.remove('dark-theme');
-    document.body.classList.add('light-theme');
-}else{
-    themeToggleBtn.classList.remove('active');
-    document.body.classList.remove('light-theme');
-    document.body.classList.add('dark-theme');
+        list.append(card);
+    });
 }
 
-// i18n translations loaded from JSON files
-const translationsCache = {};
+function renderSkills(list, items) {
+    clearNode(list);
+    items.forEach((item) => {
+        const entry = document.createElement('li');
+        const card = document.createElement('div');
+        card.className = 'skills-card';
+        card.setAttribute('role', 'img');
+        card.setAttribute('aria-label', item.name);
 
-async function loadTranslations(lang) {
-    if (translationsCache[lang]) return translationsCache[lang];
-    try {
-        const res = await fetch(`./locales/${lang}.json`, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`Failed to load ${lang}`);
-        const json = await res.json();
-        translationsCache[lang] = json;
-        return json;
-    } catch (err) {
-        if (lang !== 'en') {
-            return loadTranslations('en');
+        if (item.icon) {
+            const img = document.createElement('img');
+            img.src = item.icon;
+            img.alt = '';
+            img.width = 48;
+            img.height = 48;
+            card.append(img);
+        } else {
+            const label = document.createElement('span');
+            label.className = 'skill-label';
+            label.textContent = item.name;
+            card.append(label);
         }
-        return {};
-    }
+
+        const tip = document.createElement('span');
+        tip.className = 'tooltip';
+        tip.setAttribute('aria-hidden', 'true');
+        tip.textContent = item.name;
+        card.append(tip);
+
+        entry.append(card);
+        list.append(entry);
+    });
+}
+
+function renderProjects(list, items) {
+    clearNode(list);
+    const external = lookup(currentDict, 'a11y.external') || '';
+
+    items.forEach((item) => {
+        const entry = document.createElement('li');
+        const card = item.href ? document.createElement('a') : document.createElement('article');
+        card.className = 'project-card';
+
+        if (item.href) {
+            card.href = item.href;
+            card.target = '_blank';
+            card.rel = 'noopener noreferrer';
+            card.setAttribute('aria-label', item.title + (external ? '. ' + external : ''));
+        }
+
+        const figure = document.createElement('figure');
+        figure.className = 'card-banner';
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.alt || item.title;
+        figure.append(img);
+        card.append(figure);
+
+        const content = document.createElement('div');
+        content.className = 'card-content';
+
+        const title = document.createElement('h3');
+        title.className = 'h4 card-title';
+        title.textContent = item.title;
+        content.append(title);
+
+        if (item.summary) {
+            const summary = document.createElement('p');
+            summary.className = 'card-text';
+            summary.textContent = item.summary;
+            content.append(summary);
+        }
+
+        const time = document.createElement('time');
+        time.className = 'publish-date';
+        time.dateTime = item.date;
+        time.textContent = item.dateLabel;
+        content.append(time);
+
+        card.append(content);
+        entry.append(card);
+        list.append(entry);
+    });
+
+    revealProjects();
+}
+
+function renderParagraphs(node, text) {
+    clearNode(node);
+    text.split(/\n\n+/).forEach((part) => {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = part;
+        node.append(paragraph);
+    });
+}
+
+function renderLists(dict) {
+    const highlights = document.querySelector('[data-list="highlights"]');
+    const experience = document.querySelector('[data-list="experience"]');
+    const education = document.querySelector('[data-list="education"]');
+    const skills = document.querySelector('[data-list="skills"]');
+    const projects = document.querySelector('[data-list="projects"]');
+
+    if (highlights && dict.highlights) renderHighlights(highlights, dict.highlights);
+    if (experience && dict.experience) renderTimeline(experience, dict.experience.items);
+    if (education && dict.education) renderTimeline(education, dict.education.items);
+    if (skills && dict.skills) renderSkills(skills, dict.skills.items);
+    if (projects && dict.projects) renderProjects(projects, dict.projects.items);
 }
 
 function applyTranslations(dict, lang) {
-    document.documentElement.setAttribute('lang', lang);
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (dict[key]) {
-            el.textContent = dict[key];
-        }
+    currentDict = dict;
+    document.documentElement.lang = lang;
+    document.documentElement.setAttribute('data-lang', lang);
+
+    const title = lookup(dict, 'meta.title');
+    const description = lookup(dict, 'meta.description');
+    if (title) {
+        document.title = title;
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', title);
+    }
+    if (description) {
+        const meta = document.querySelector('meta[name="description"]');
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if (meta) meta.setAttribute('content', description);
+        if (ogDesc) ogDesc.setAttribute('content', description);
+    }
+
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.setAttribute('content', lang === 'sr' ? 'sr_RS' : 'en_US');
+
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const value = lookup(dict, el.getAttribute('data-i18n'));
+        if (typeof value === 'string') el.textContent = value;
     });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        const key = el.getAttribute('data-i18n-placeholder');
-        if (dict[key]) {
-            el.setAttribute('placeholder', dict[key]);
-        }
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+        const value = lookup(dict, el.getAttribute('data-i18n-placeholder'));
+        if (typeof value === 'string') el.setAttribute('placeholder', value);
     });
+
+    document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+        const value = lookup(dict, el.getAttribute('data-i18n-aria'));
+        if (typeof value === 'string') el.setAttribute('aria-label', value);
+    });
+
+    document.querySelectorAll('[data-i18n-alt]').forEach((el) => {
+        const value = lookup(dict, el.getAttribute('data-i18n-alt'));
+        if (typeof value === 'string') el.alt = value;
+    });
+
+    document.querySelectorAll('[data-i18n-paragraphs]').forEach((el) => {
+        const value = lookup(dict, el.getAttribute('data-i18n-paragraphs'));
+        if (typeof value === 'string') renderParagraphs(el, value);
+    });
+
+    renderLists(dict);
 }
 
-const languageSelector = document.getElementById('lang');
+async function loadTranslations(lang) {
+    if (translationsCache[lang]) return translationsCache[lang];
+    const response = await fetch('./locales/' + lang + '.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('Failed to load ' + lang);
+    const json = await response.json();
+    translationsCache[lang] = json;
+    return json;
+}
 
 async function setLanguage(lang) {
-    const dict = await loadTranslations(lang);
-    localStorage.setItem('language', lang);
-    applyTranslations(dict, lang);
+    try {
+        const dict = await loadTranslations(lang);
+        localStorage.setItem('language', lang);
+        applyTranslations(dict, lang);
+    } catch (err) {
+        if (lang !== 'en') setLanguage('en');
+    }
 }
 
-languageSelector.addEventListener('change', function() {
-    const selectedLang = this.value;
-    setLanguage(selectedLang);
+function closeNav() {
+    navToggleBtn.classList.remove('active');
+    navbar.classList.remove('active');
+    document.body.classList.remove('active');
+    navToggleBtn.setAttribute('aria-expanded', 'false');
+}
+
+window.addEventListener('scroll', function () {
+    const active = window.scrollY >= 10;
+    header.classList.toggle('active', active);
+    goTopBtn.classList.toggle('active', active);
+});
+
+navToggleBtn.addEventListener('click', function () {
+    const open = !navbar.classList.contains('active');
+    navToggleBtn.classList.toggle('active', open);
+    navbar.classList.toggle('active', open);
+    document.body.classList.toggle('active', open);
+    navToggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+
+navbar.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeNav);
+});
+
+themeToggleBtn.addEventListener('click', function () {
+    const light = !document.body.classList.contains('light-theme');
+    themeToggleBtn.classList.toggle('active', light);
+    document.body.classList.toggle('light-theme', light);
+    document.body.classList.toggle('dark-theme', !light);
+    localStorage.setItem('theme', light ? 'light-theme' : 'dark-theme');
+});
+
+if (localStorage.getItem('theme') === 'light-theme') {
+    themeToggleBtn.classList.add('active');
+    document.body.classList.remove('dark-theme');
+    document.body.classList.add('light-theme');
+}
+
+languageSelector.addEventListener('change', function () {
+    setLanguage(this.value);
 });
 
 const savedLanguage = localStorage.getItem('language') || 'en';
 languageSelector.value = savedLanguage;
 setLanguage(savedLanguage);
 
-// Form validation and enhanced UX
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('message').value.trim();
-        
-        if (!name || !email || !message) {
-            e.preventDefault();
-            alert('Please fill in all required fields.');
-            return;
-        }
-        
-        // Basic email validation
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-            e.preventDefault();
-            alert('Please enter a valid email address.');
-            return;
-        }
-    });
+function showFormError(message) {
+    formError.hidden = false;
+    formError.textContent = message;
 }
 
-// Add loading animation for project cards
-const projectCards = document.querySelectorAll('.project-card');
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+contactForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
+    if (!name || !email || !message) {
+        showFormError(lookup(currentDict, 'form.required') || 'Name, email, and message are required.');
+        return;
+    }
 
-projectCards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
+    if (!emailPattern.test(email)) {
+        showFormError(lookup(currentDict, 'form.invalidEmail') || 'Enter a valid email address.');
+        return;
+    }
+
+    formError.hidden = true;
+    formError.textContent = '';
+
+    const lines = [
+        lookup(currentDict, 'form.name') + ': ' + name,
+        lookup(currentDict, 'form.email') + ': ' + email
+    ];
+    if (phone) lines.push(lookup(currentDict, 'form.phone') + ': ' + phone);
+    lines.push('', message);
+
+    const subject = encodeURIComponent(lookup(currentDict, 'form.subject') || 'Portfolio message');
+    const body = encodeURIComponent(lines.join('\n'));
+    window.location.href = 'mailto:accam003@gmail.com?subject=' + subject + '&body=' + body;
 });
+
+function revealProjects() {
+    const cards = document.querySelectorAll('.project-card');
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    cards.forEach((card) => {
+        card.classList.add('will-reveal');
+        observer.observe(card);
+    });
+}
